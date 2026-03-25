@@ -54,7 +54,7 @@
             <h1 class="page-title">Produits</h1>
             <p class="produits-count">8 produit(s) au total</p>
         </div>
-        <button class="btn-ajouter">+ Ajouter un produit</button>
+        <button class="btn-ajouter" onclick="window.location.href='AjouterProduit.php'">+ Ajouter un produit</button>
     </div>
  
     <!-- Barre de recherche -->
@@ -87,7 +87,7 @@
                     <td class="price">1.50 €</td>
                     <td><span class="stock-badge">50</span></td>
                     <td class="actions">
-                        <button class="btn-edit">✏️</button>
+                        <button class="btn-edit" onclick="window.location.href='Modifier_Produit.php'">✏️</button>
                         <button class="btn-delete">🗑️</button>
                     </td>
                 </tr>
@@ -100,7 +100,7 @@
                     <td class="price">4.50 €</td>
                     <td><span class="stock-badge">30</span></td>
                     <td class="actions">
-                        <button class="btn-edit">✏️</button>
+                        <button class="btn-edit" onclick="window.location.href='Modifier_Produit.php'">✏️</button>
                         <button class="btn-delete">🗑️</button>
                     </td>
                 </tr>
@@ -113,7 +113,7 @@
                     <td class="price">2.20 €</td>
                     <td><span class="stock-badge">40</span></td>
                     <td class="actions">
-                        <button class="btn-edit">✏️</button>
+                        <button class="btn-edit" onclick="window.location.href='Modifier_Produit.php'">✏️</button>
                         <button class="btn-delete">🗑️</button>
                     </td>
                 </tr>
@@ -126,7 +126,7 @@
                     <td class="price">5.90 €</td>
                     <td><span class="stock-badge">45</span></td>
                     <td class="actions">
-                        <button class="btn-edit">✏️</button>
+                        <button class="btn-edit" onclick="window.location.href='Modifier_Produit.php'">✏️</button>
                         <button class="btn-delete">🗑️</button>
                     </td>
                 </tr>
@@ -139,7 +139,7 @@
                     <td class="price">12.90 €</td>
                     <td><span class="stock-badge">15</span></td>
                     <td class="actions">
-                        <button class="btn-edit">✏️</button>
+                        <button class="btn-edit" onclick="window.location.href='Modifier_Produit.php'">✏️</button>
                         <button class="btn-delete">🗑️</button>
                     </td>
                 </tr>
@@ -152,7 +152,7 @@
                     <td class="price">3.80 €</td>
                     <td><span class="stock-badge">60</span></td>
                     <td class="actions">
-                        <button class="btn-edit">✏️</button>
+                        <button class="btn-edit" onclick="window.location.href='Modifier_Produit.php'">✏️</button>
                         <button class="btn-delete">🗑️</button>
                     </td>
                 </tr>
@@ -165,7 +165,7 @@
                     <td class="price">2.30 €</td>
                     <td><span class="stock-badge">80</span></td>
                     <td class="actions">
-                        <button class="btn-edit">✏️</button>
+                        <button class="btn-edit" onclick="window.location.href='Modifier_Produit.php'">✏️</button>
                         <button class="btn-delete">🗑️</button>
                     </td>
                 </tr>
@@ -178,7 +178,7 @@
                     <td class="price">3.50 €</td>
                     <td><span class="stock-badge">25</span></td>
                     <td class="actions">
-                        <button class="btn-edit">✏️</button>
+                        <button class="btn-edit" onclick="window.location.href='Modifier_Produit.php'">✏️</button>
                         <button class="btn-delete">🗑️</button>
                     </td>
                 </tr>
