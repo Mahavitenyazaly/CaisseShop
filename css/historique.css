@@ -1,0 +1,178 @@
+/* ══════════════════════════════
+   PAGE HISTORIQUE
+══════════════════════════════ */
+
+/* ── Filtres ── */
+.histo-filters {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    margin-bottom: 1.4rem;
+    flex-wrap: wrap;
+}
+
+.btn-today {
+    padding: .7rem 1.4rem;
+    background: var(--navy);
+    color: var(--white);
+    font-family: inherit;
+    font-size: .95rem;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    transition: background .15s;
+}
+
+.btn-today:hover { background: #254d7a; }
+
+.chevron {
+    font-size: .8rem;
+}
+
+.periode-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.btn-periode {
+    padding: .7rem 1.2rem;
+    background: var(--white);
+    color: var(--navy);
+    font-family: inherit;
+    font-size: .95rem;
+    font-weight: 700;
+    border: 2px solid var(--navy);
+    border-right: none;
+    border-radius: var(--radius) 0 0 var(--radius);
+    cursor: pointer;
+    transition: background .15s;
+}
+
+.btn-periode:hover { background: #f0f4f8; }
+
+.btn-calendar {
+    padding: .7rem .9rem;
+    background: var(--white);
+    color: var(--navy);
+    font-size: 1rem;
+    border: 2px solid var(--navy);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    cursor: pointer;
+    transition: background .15s;
+}
+
+.btn-calendar:hover { background: #f0f4f8; }
+
+.btn-filtrer {
+    padding: .7rem 1.4rem;
+    background: var(--orange);
+    color: var(--white);
+    font-family: inherit;
+    font-size: .95rem;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background .15s, transform .15s;
+    box-shadow: 0 4px 14px rgba(244,121,32,.3);
+}
+
+.btn-filtrer:hover {
+    background: #e06810;
+    transform: translateY(-1px);
+}
+
+/* ── Table wrapper ── */
+.table-wrapper {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    overflow-y: auto;
+    flex: 1;
+}
+
+.table-wrapper::-webkit-scrollbar { width: 5px; }
+.table-wrapper::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+/* ── Tableau historique ── */
+.histo-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.histo-table thead th {
+    padding: 1rem 1.4rem;
+    text-align: left;
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    background: var(--white);
+    border-bottom: 1.5px solid var(--border);
+    white-space: nowrap;
+}
+
+.histo-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background .12s;
+}
+
+.histo-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.histo-table tbody tr:hover {
+    background: #f8fbff;
+}
+
+.histo-table tbody td {
+    padding: 1rem 1.4rem;
+    font-size: .92rem;
+    color: var(--text-dark);
+    vertical-align: middle;
+}
+
+/* Colonnes colorées */
+.histo-total {
+    font-weight: 800;
+    color: var(--teal-dark) !important;
+    font-size: 1rem !important;
+}
+
+.histo-articles {
+    font-weight: 800;
+    color: var(--teal-dark) !important;
+    font-size: 1rem !important;
+}
+
+.histo-stock {
+    font-weight: 800;
+    color: var(--teal-dark) !important;
+    font-size: 1rem !important;
+}
+
+/* Bouton Aperçu */
+.btn-apercu {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .5rem 1.1rem;
+    background: #edf0f4;
+    color: var(--text-dark);
+    font-family: inherit;
+    font-size: .88rem;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background .15s, transform .12s;
+}
+
+.btn-apercu:hover {
+    background: #dde3ec;
+    transform: scale(1.04);
+}
