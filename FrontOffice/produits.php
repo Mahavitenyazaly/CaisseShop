@@ -19,15 +19,15 @@
  
     <nav class="sidebar-nav">
         <a href="caisse.php" class="nav-item">
-            <span class="nav-icon">🛒</span>
+            <span class="nav-icon"></span>
             <span>Caisse</span>
         </a>
         <a href="produits.php" class="nav-item active">
-            <span class="nav-icon">📦</span>
+            <span class="nav-icon"></span>
             <span>Produits</span>
         </a>
         <a href="historique.php" class="nav-item">
-            <span class="nav-icon">🕐</span>
+            <span class="nav-icon"></span>
             <span>Historique</span>
         </a>
     </nav>
