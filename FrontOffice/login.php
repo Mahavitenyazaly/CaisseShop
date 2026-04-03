@@ -13,19 +13,19 @@
     </div>
 
 <h1>Connexion</h1>
+<form action="">
+        <div class="form-group">
+        <label for="Email">Mail : </label>
+        <input type="email" name="Mail" id="Email">
+        </div>
 
-<div class="form-group">
-<label for="Email">Mail : </label>
-<input type="email" name="Mail" id="Email">
-</div>
+        <div class="form-group">
+        <label for="MotDePasse">Mot de passe : </label>
+        <input type="password" name="MDP" id="MotDePass">
+        </div>
 
-<div class="form-group">
-<label for="MotDePasse">Mot de passe : </label>
-<input type="password" name="MDP" id="MotDePass">
-</div>
-
-<button type="submit" class="btn-connect">Se connecter</button>
-
+        <button type="submit" class="btn-connect">Se connecter</button>
+</form>
 </div>
 </body>
 </html>
