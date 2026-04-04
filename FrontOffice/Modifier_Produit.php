@@ -56,7 +56,7 @@
  
         <div class="form-field">
             <label for="description">Description</label>
-            <textarea id="description" name="description" rows="4">Bottes de bananes fraîches.....</textarea>
+            <textarea id="description" name="description" rows="4"></textarea>
         </div>
  
         <div class="inline-fields">
