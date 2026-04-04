@@ -4,6 +4,7 @@ require_once(__DIR__ . '/../BDD/ConnexionBDD.php');
 $sqlQuery='SELECT * FROM  produits';
 $selectPro=$mysqlClient->prepare($sqlQuery);
 $selectPro->execute();
+
 $Produits=$selectPro->fetchAll();
 ?>
 
@@ -17,6 +18,7 @@ $Produits=$selectPro->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="getioncaisse.js"></script>
     <link rel="stylesheet" href="../css/caisse.css">
     <title>Caisse — Pointe de vente</title>
 </head>
@@ -44,7 +46,7 @@ $Produits=$selectPro->fetchAll();
     <div class="sidebar-user">
         <div class="user-avatar">👤</div>
         <div class="user-info">
-            <span class="user-name">Utilisateur</span>
+            <span class="user-name">Azaly MAHAVITENY</span>
             <span class="user-email">azalymahaviteny@gmail.com</span>
         </div>
         <a href="../FrontOffice/login.php" class="btn-logout">
@@ -73,7 +75,6 @@ $Produits=$selectPro->fetchAll();
         <?php for ($i = 0; $i < 9; $i++) {?>
         <div class="product-card">
             <div class="product-img">
-                <img src="../Images/pain-complet.jpg" alt="Pain complet">
             </div>
             <div class="product-info">
                 <p class="product-name"> <?php echo $Produits[$i]['NomProduit']?></p>
@@ -115,4 +116,45 @@ $Produits=$selectPro->fetchAll();
 
 
 </body>
+
+<script>
+    const produits = <?php echo json_encode($Produits); ?>;
+
+    let caisse = [];
+
+    function afficherCaisse() {
+        const ticketList = document.getElementById("panier-vide");
+        ticketList.innerHTML = '';
+        let total = 0;
+        for (let index = 0; index < caisse.length; index++) {
+
+            total += (caisse[index].Prix * caisse[index].Quantite);
+
+            ticketList.innerHTML += `
+            <div class="">
+            <div>
+              <strong>${caisse[index].NomProduit}</strong><br>
+              <small>${caisse[index].Prix} € / unité</small>
+            </div>
+
+            <div class="">
+              <button type="button" onclick="diminuerQuantite(${caisse[index].Id})">-</button>
+              <span>${caisse[index].Quantite}</span>
+              <button type="button" onclick="augmenterQuantite(${caisse[index].Id})">+</button>
+              <button type="button" class="btn-remove" onclick="supprimerProduit(${caisse[index].Id})">X</button>
+
+
+            <input type="hidden" name="produits[${index}][id]" value="${caisse[index].id}">
+            <input type="hidden" name="produits[${index}][quantite]" value="${caisse[index].Quantite}">
+            </div>
+          </div>
+        `;
+        }
+
+        const totalCaisse = document.getElementById("ticketTotal");
+        totalCaisse.innerHTML = Math.trunc(total * 100) / 100 + " €";
+
+    }
+
+</script>
 </html>

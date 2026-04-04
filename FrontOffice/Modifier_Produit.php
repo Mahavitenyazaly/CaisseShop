@@ -17,15 +17,15 @@
     </div>
     <nav class="sidebar-nav">
         <a href="caisse.php" class="nav-item active">
-            <span class="nav-icon">🛒</span>
+            <span class="nav-icon"></span>
             <span>Caisse</span>
         </a>
         <a href="produits.php" class="nav-item">
-            <span class="nav-icon">📦</span>
+            <span class="nav-icon"></span>
             <span>Produits</span>
         </a>
         <a href="historique.php" class="nav-item">
-            <span class="nav-icon">🕐</span>
+            <span class="nav-icon"></span>
             <span>Historique</span>
         </a>
     </nav>
@@ -46,7 +46,7 @@
 <main class="main-content">
  
     <h1 class="page-title">Modifier un produit</h1>
- 
+ <form action="" method="POST">
     <div class="form-card">
  
         <div class="form-field">
@@ -59,27 +59,19 @@
             <textarea id="description" name="description" rows="4">Bottes de bananes fraîches.....</textarea>
         </div>
  
-        <div class="form-field">
-            <label>Image</label>
-            <div class="image-row">
-                <img src="../Images/bananes.jpg" alt="Image produit" class="prod-preview">
-                <button type="button" class="btn-modifier-img">Modifier l'image</button>
-            </div>
-        </div>
- 
         <div class="inline-fields">
             <div class="form-field">
                 <label for="prix">Prix</label>
-                <input type="text" id="prix" name="prix" value="2.30 €" class="input-teal">
+                <input type="text" id="prix" name="prix" class="input-teal">
             </div>
             <div class="form-field">
                 <label for="stock">Stock</label>
-                <input type="text" id="stock" name="stock" value="40" class="input-teal input-center">
+                <input type="text" id="stock" name="stock" class="input-teal input-center">
             </div>
             <div class="form-field barcode-field">
                 <label for="codebarres">Code-barres</label>
                 <div class="barcode-input-wrap">
-                    <input type="text" id="codebarres" name="codebarres" value="12546473834994404">
+                    <input type="text" id="codebarres" name="codebarres">
                     <button type="button" class="btn-print">🖨️</button>
                 </div>
             </div>
@@ -89,8 +81,8 @@
             <button type="button" class="btn-annuler">Annuler</button>
             <button type="submit" class="btn-enregistrer">Enregistrez</button>
         </div>
- 
-    </div>
+    </form>
+</div>
  
 </main>
  

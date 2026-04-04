@@ -2,6 +2,25 @@
 require_once(__DIR__ . '/../BDD/ConnexionBDD.php');
 
 
+// Faire la supression en base 
+
+if (isset($_POST['delete_id_produits']))
+{
+  $id_produits = $_POST['delete_id_produits'];
+
+  $insertCl = $mysqlClient-> prepare('DELETE FROM produits WHERE id = :id_produits ');
+  $insertCl->execute([
+      'id_produits' => $id_produits
+    ]);
+}
+
+
+
+
+
+
+
+
 $sqlQuery='SELECT * FROM  produits';
 $selectPro=$mysqlClient->prepare($sqlQuery);
 $selectPro->execute();
@@ -98,17 +117,28 @@ $totalProduits = $resultat['total'];
                 </tr>
             </thead>
             <tbody>
-            <?php for ($i = 0; $i < 12; $i++) {?>
+            <?php for ($i = 0; $i < count($Produits); $i++) {?>
                 <tr>
                     <td><img src="../Images/pain-complet.jpg" alt="Pain complet" class="prod-img"></td>
                     <td><?php echo $Produits[$i]['NomProduit']?></td>
-                    <td><span class="desc-dots">................................</span></td>
+                    <td><span class="desc-dots"><?php echo $Produits[$i]['Description']?></span></td>
                     <td><span class="barcode-badge"><?php echo $Produits[$i]['CodeBarres']?></span></td>
                     <td class="price"><?php echo $Produits[$i]['Prix']?> €</td>
                     <td><span class="stock-badge"><?php echo $Produits[$i]['Stock']?></span></td>
                     <td class="actions">
+                        <form action="" method="POST">
+                            <input type="hidden" value="<?php echo $Produits[$i]['Id']?>" name="update_id_produits">
+                            <input type="hidden" value="<?php echo $Produits[$i]['NomProduit']?>" name="update_NomProduit">
+                            <input type="hidden" value="<?php echo $Produits[$i]['Description']?>" name="update_Desc">
+                            <input type="hidden" value="<?php echo $Produits[$i]['CodeBarres']?>" name="update_CodeB">
+                            <input type="hidden" value="<?php echo $Produits[$i]['Prix']?>" name="update_Prix">
+                            <input type="hidden" value="<?php echo $Produits[$i]['Stock']?>" name="update_Stock">
                         <button class="btn-edit" onclick="window.location.href='Modifier_Produit.php'">✏️</button>
+                        </form>
+                        <form action="produits.php" method="POST">
+                        <input type="hidden" value="<?php echo $Produits[$i]['Id']?>" name="delete_id_produits">
                         <button class="btn-delete">🗑️</button>
+                        </form>
                     </td>
                 </tr>
             <?php }?>

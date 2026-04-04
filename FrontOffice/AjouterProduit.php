@@ -2,20 +2,26 @@
 require_once(__DIR__ . '/../BDD/ConnexionBDD.php');
 
 
-if (isset($_GET['AjoutNom']) && empty($_GET['AjoutNom'])=== false)
-  if (isset($_GET['AjoutDescription']) && empty($_GET['AjoutDescription'])=== false)
-    if (isset($_GET['AjoutPrix']) && empty($_GET['AjoutPrix'])=== false)
-        if (isset($_GET['AJoutStock']) && empty($_GET['AJoutStock'])=== false)
-          if (isset($_GET['AjoutCodebarres']) && empty($_GET['AjoutCodebarres'])=== false)
+if(
+    isset($_POST['AjoutNom']) &&
+    isset($_POST['AjoutDescription']) &&
+    isset($_POST['AjoutPrix']) &&
+    isset($_POST['AJoutStock']) &&
+    isset($_POST['AjoutCodebarres']) &&
+
+    !empty($_POST['AjoutNom']) &&
+    !empty($_POST['AjoutDescription']) &&
+    !empty($_POST['AjoutPrix']) &&
+    !empty($_POST['AJoutStock']) &&
+    !empty($_POST['AjoutCodebarres'])) 
 
       {
-        $Nom = $_GET['AjoutNom'];
-        $Description = $_GET['AjoutDescription'];
-        $Prix = $_GET['AjoutPrix'];
-        $Stock = $_GET['AJoutStock'];
-        $CodeB = $_GET['AjoutCodebarres'];
-        $Image = $_GET[''];
-
+        $Nom = $_POST['AjoutNom'];
+        $Description = $_POST['AjoutDescription'];
+        $Prix = $_POST['AjoutPrix'];
+        $Stock = $_POST['AJoutStock'];
+        $CodeB = $_POST['AjoutCodebarres'];
+        
         // Faire l'insertion
 
       $insertCl = $mysqlClient-> prepare('INSERT INTO produits (NomProduit, Description, Prix, Stock, CodeBarres) VALUES (:nomP,:description,:prix,:stock,:codebarres)');
@@ -24,7 +30,7 @@ if (isset($_GET['AjoutNom']) && empty($_GET['AjoutNom'])=== false)
         'description' => $Description,
         'prix' => $Prix,
         'stock' => $Stock,
-        'codebarres' => $IDrCodeBole
+        'codebarres' => $CodeB
       ]);
 }
 
@@ -81,12 +87,13 @@ if (isset($_GET['AjoutNom']) && empty($_GET['AjoutNom'])=== false)
 <main class="main-content">
  
     <h1 class="page-title">Ajouter un produit</h1>
- 
+
+ <form action="AjouterProduit.php" method="POST">
     <div class="form-card">
  
         <div class="form-field">
             <label for="nom">Nom</label>
-            <input type="text" id="nom" name="Ajoutnom" >
+            <input type="text" id="nom" name="AjoutNom" >
         </div>
  
         <div class="form-field">
@@ -94,13 +101,6 @@ if (isset($_GET['AjoutNom']) && empty($_GET['AjoutNom'])=== false)
             <textarea id="description" name="AjoutDescription" rows="4"></textarea>
         </div>
  
-        <div class="form-field">
-            <label>Image</label>
-            <div class="image-row">
-                <img src="../Images/" alt="Image produit" class="prod-preview">
-                <button type="button" class="btn-modifier-img">+ Ajouter l'image</button>
-            </div>
-        </div>
  
         <div class="inline-fields">
             <div class="form-field">
@@ -126,7 +126,9 @@ if (isset($_GET['AjoutNom']) && empty($_GET['AjoutNom'])=== false)
         </div>
  
     </div>
- 
+
+ </form>
+
 </main>
  
 </body>

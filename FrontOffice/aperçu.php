@@ -32,7 +32,7 @@
     <div class="sidebar-user">
         <div class="user-avatar"></div>
         <div class="user-info">
-            <span class="user-name">Utilisateur</span>
+            <span class="user-name">Azaly MAHAVITENY</span>
             <span class="user-email">utilisateur@gmail.com</span>
         </div>
         <a href="../FrontOffice/login.php" class="btn-logout">
