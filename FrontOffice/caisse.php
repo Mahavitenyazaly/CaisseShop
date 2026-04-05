@@ -18,7 +18,6 @@ $Produits=$selectPro->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="getioncaisse.js"></script>
     <link rel="stylesheet" href="../css/caisse.css">
     <title>Caisse — Pointe de vente</title>
 </head>
@@ -71,20 +70,8 @@ $Produits=$selectPro->fetchAll();
     </div>
 
     <!-- Grille produits -->
-    <div class="products-grid">
-        <?php for ($i = 0; $i < 9; $i++) {?>
-        <div class="product-card">
-            <div class="product-img">
-            </div>
-            <div class="product-info">
-                <p class="product-name"> <?php echo $Produits[$i]['NomProduit']?></p>
-                <p class="product-price"><?php echo $Produits[$i]['Prix']?> €</p>
-                <span class="product-stock">Stock : <?php echo $Produits[$i]['Stock']?></span>
-            </div>
-            <button class="btn-plus">+</button>
-            
-        </div>
-        <?php }?>
+    <div class="products-grid" id="productGrid">
+   
     </div>
 </main>
 
@@ -118,43 +105,124 @@ $Produits=$selectPro->fetchAll();
 </body>
 
 <script>
+
     const produits = <?php echo json_encode($Produits); ?>;
 
     let caisse = [];
 
     function afficherCaisse() {
-        const ticketList = document.getElementById("panier-vide");
-        ticketList.innerHTML = '';
-        let total = 0;
-        for (let index = 0; index < caisse.length; index++) {
+    const ticketList = document.getElementById("panier-articles");
+    const panierVide = document.getElementById("panier-vide");
+    const panierCount = document.getElementById("panier-count");
+    const totalCaisse = document.getElementById("panier-total");
 
-            total += (caisse[index].Prix * caisse[index].Quantite);
+    ticketList.innerHTML = '';
+    let total = 0;
 
-            ticketList.innerHTML += `
-            <div class="">
-            <div>
-              <strong>${caisse[index].NomProduit}</strong><br>
-              <small>${caisse[index].Prix} € / unité</small>
+    // Affiche ou cache le message "panier vide"
+    if (caisse.length === 0) {
+        panierVide.style.display = 'flex';
+        ticketList.style.display = 'none';
+    } else {
+        panierVide.style.display = 'none';
+        ticketList.style.display = 'block';
+    }
+
+    for (let i = 0; i < caisse.length; i++) {
+        total += (caisse[i].Prix * caisse[i].Quantite);
+
+        ticketList.innerHTML += `
+            <div class="panier-ligne">
+                <div class="panier-ligne-info">
+                    <span class="panier-ligne-nom">${caisse[i].NomProduit}</span>
+                    <span class="panier-ligne-prix">${caisse[i].Prix} € / unité</span>
+                </div>
+                <div class="panier-ligne-droite">
+                    <div class="panier-ligne-btns">
+                        <button type="button" class="panier-btn-qte" onclick="diminuerQuantite(${caisse[i].Id})">−</button>
+                        <span class="panier-qte">${caisse[i].Quantite}</span>
+                        <button type="button" class="panier-btn-qte" onclick="augmenterQuantite(${caisse[i].Id})">+</button>
+                    </div>
+                    <span class="panier-ligne-sous-total">${Math.trunc(caisse[i].Prix * caisse[i].Quantite * 100) / 100} €</span>
+                    <button type="button" class="panier-btn-suppr" onclick="supprimerProduit(${caisse[i].Id})">✕</button>
+                </div>
+                <input type="hidden" name="produits[${i}][id]" value="${caisse[i].Id}">
+                <input type="hidden" name="produits[${i}][quantite]" value="${caisse[i].Quantite}">
             </div>
-
-            <div class="">
-              <button type="button" onclick="diminuerQuantite(${caisse[index].Id})">-</button>
-              <span>${caisse[index].Quantite}</span>
-              <button type="button" onclick="augmenterQuantite(${caisse[index].Id})">+</button>
-              <button type="button" class="btn-remove" onclick="supprimerProduit(${caisse[index].Id})">X</button>
-
-
-            <input type="hidden" name="produits[${index}][id]" value="${caisse[index].id}">
-            <input type="hidden" name="produits[${index}][quantite]" value="${caisse[index].Quantite}">
-            </div>
-          </div>
         `;
-        }
+    }
 
-        const totalCaisse = document.getElementById("ticketTotal");
-        totalCaisse.innerHTML = Math.trunc(total * 100) / 100 + " €";
+    // Met à jour le total et le compteur d'articles
+    totalCaisse.innerHTML = Math.trunc(total * 100) / 100 + " €";
+    panierCount.innerHTML = caisse.length + " article(s)";
+}
+
+    function ajouterProduitDansCaisse(id) {
+        let newProduct = produits.find(p => p.Id == id);
+        let productExist = caisse.find(p => p.Id == id);
+
+        if (productExist == null)
+            caisse.push({
+                Id: newProduct.Id,
+                NomProduit: newProduct.NomProduit,
+                Prix: newProduct.Prix,
+                Quantite: 1
+            })
+        else {
+            productExist.Quantite++;
+        }
+        afficherCaisse();
+    }
+
+    function augmenterQuantite(id) {
+        let produitDansCaisse = caisse.find(p => p.Id == id);
+
+        produitDansCaisse.Quantite = produitDansCaisse.Quantite + 1;
+
+
+        afficherCaisse();
 
     }
+
+
+    function supprimerProduit(id) {
+        caisse = caisse.filter(p => p.Id != id);
+        afficherCaisse();
+
+    }
+
+
+    function diminuerQuantite(id) {
+        let produitDansCaisse = caisse.find(p => p.Id == id);
+
+        produitDansCaisse.Quantite = produitDansCaisse.Quantite - 1;
+        if (produitDansCaisse.Quantite <= 0) {
+            caisse = caisse.filter(p => p.Id != id);
+        }
+
+        afficherCaisse();
+    }
+
+    function afficherProduits() {
+        let productList = document.getElementById("productGrid");
+        productList.innerHTML = "";
+
+        for (let i = 0; i < produits.length; i++) {
+            productList.innerHTML = productList.innerHTML + `
+          <div class="product-card">
+                <div class="product-info">
+                    <p class="product-name">${produits[i].NomProduit}</p>
+                    <p class="product-price">${Number(produits[i].Prix)} €</p>
+                    <span class="product-stock">Stock : ${produits[i].Stock}</span>
+                </div>
+                <button class="btn-plus" type="button" onclick="ajouterProduitDansCaisse(${produits[i].Id})">+</button>
+            </div>
+        `;
+    }
+}
+
+    afficherProduits();
+
 
 </script>
 </html>

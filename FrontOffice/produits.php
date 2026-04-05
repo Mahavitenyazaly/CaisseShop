@@ -107,7 +107,6 @@ $totalProduits = $resultat['total'];
         <table class="produits-table">
             <thead>
                 <tr>
-                    <th>Image</th>
                     <th>Nom</th>
                     <th>Description</th>
                     <th>Code-barres</th>
@@ -119,7 +118,6 @@ $totalProduits = $resultat['total'];
             <tbody>
             <?php for ($i = 0; $i < count($Produits); $i++) {?>
                 <tr>
-                    <td><img src="../Images/pain-complet.jpg" alt="Pain complet" class="prod-img"></td>
                     <td><?php echo $Produits[$i]['NomProduit']?></td>
                     <td><span class="desc-dots"><?php echo $Produits[$i]['Description']?></span></td>
                     <td><span class="barcode-badge"><?php echo $Produits[$i]['CodeBarres']?></span></td>
