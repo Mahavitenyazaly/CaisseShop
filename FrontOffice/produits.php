@@ -2,6 +2,35 @@
 require_once(__DIR__ . '/../BDD/ConnexionBDD.php');
 
 
+// Faire la modification en base 
+
+if (isset($_POST['IdProduitUpdated']) && empty($_POST['IdProduitUpdated'])=== false )
+ if (isset($_POST['NomP_updated']) && empty($_POST['NomP_updated'])=== false )
+   if (isset($_POST['Description_Updated']) && empty($_POST['Description_Updated'])=== false )
+     if (isset($_POST['PrixUpdated']) && empty($_POST['PrixUpdated'])=== false )
+        if (isset($_POST['StockUpdated']) && empty($_POST['StockUpdated'])=== false )
+            if (isset($_POST['CodebarresUpdated']) && empty($_POST['CodebarresUpdated'])=== false )
+
+{
+  $upd_id_P = $_POST['IdProduitUpdated'];
+  $upd_nomP = $_POST['NomP_updated'];
+  $upd_Decription = $_POST['Description_Updated'];
+  $upd_Prix = $_POST['PrixUpdated'];
+  $upd_Stock = $_POST['StockUpdated'];
+  $upd_CodeBarres = $_POST['CodebarresUpdated'];
+
+
+  $insertCl = $mysqlClient-> prepare('UPDATE Produits SET NomProduit = :new_nomP, Description = :new_description, Prix = :new_prix, Stock = :new_stock, CodeBarres = :new_codebarres WHERE Id = :id_produit ');
+  $insertCl->execute([
+      'id_produit' => $upd_id_P,
+      'new_nomP' => $upd_nomP,
+      'new_description' => $upd_Decription,
+      'new_prix' => $upd_Prix,
+      'new_stock' => $upd_Stock,
+      'new_codebarres' => $upd_CodeBarres
+    ]);
+}
+
 // Faire la supression en base 
 
 if (isset($_POST['delete_id_produits']))
@@ -13,13 +42,6 @@ if (isset($_POST['delete_id_produits']))
       'id_produits' => $id_produits
     ]);
 }
-
-
-
-
-
-
-
 
 $sqlQuery='SELECT * FROM  produits';
 $selectPro=$mysqlClient->prepare($sqlQuery);
@@ -124,7 +146,7 @@ $totalProduits = $resultat['total'];
                     <td class="price"><?php echo $Produits[$i]['Prix']?> €</td>
                     <td><span class="stock-badge"><?php echo $Produits[$i]['Stock']?></span></td>
                     <td class="actions">
-                        <form action="" method="POST">
+                        <form action="Modifier_Produit.php" method="POST">
                             <input type="hidden" value="<?php echo $Produits[$i]['Id']?>" name="update_id_produits">
                             <input type="hidden" value="<?php echo $Produits[$i]['NomProduit']?>" name="update_NomProduit">
                             <input type="hidden" value="<?php echo $Produits[$i]['Description']?>" name="update_Desc">

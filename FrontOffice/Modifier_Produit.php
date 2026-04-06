@@ -46,33 +46,33 @@
 <main class="main-content">
  
     <h1 class="page-title">Modifier un produit</h1>
- <form action="" method="POST">
+ <form action="produits.php" method="POST">
     <div class="form-card">
  
         <div class="form-field">
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom" value="Bananes">
+            <input type="hidden" name="IdProduitUpdated" value="<?php echo $_POST['update_id_produits'] ?>">
+            <label for="nom">Nom Produit</label>
+            <input type="text" name="NomP_updated" value="<?php echo $_POST['update_NomProduit']?>">
         </div>
  
         <div class="form-field">
             <label for="description">Description</label>
-            <textarea id="description" name="description" rows="4"></textarea>
+            <textarea id="description" name="Description_Updated" rows="4"> <?php echo $_POST['update_Desc']?></textarea>
         </div>
  
         <div class="inline-fields">
             <div class="form-field">
                 <label for="prix">Prix</label>
-                <input type="text" id="prix" name="prix" class="input-teal">
+                <input type="text" name="PrixUpdated" class="input-teal" value="<?php echo $_POST['update_Prix']?>">
             </div>
             <div class="form-field">
                 <label for="stock">Stock</label>
-                <input type="text" id="stock" name="stock" class="input-teal input-center">
+                <input type="text" name="StockUpdated" class="input-teal input-center" value="<?php echo $_POST['update_Stock']?>">
             </div>
             <div class="form-field barcode-field">
                 <label for="codebarres">Code-barres</label>
                 <div class="barcode-input-wrap">
-                    <input type="text" id="codebarres" name="codebarres">
-                    <button type="button" class="btn-print">🖨️</button>
+                    <input type="text" name="CodebarresUpdated" value="<?php echo $_POST['update_CodeB']?>">
                 </div>
             </div>
         </div>
