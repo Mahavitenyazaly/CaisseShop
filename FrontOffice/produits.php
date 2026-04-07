@@ -44,9 +44,19 @@ if (isset($_POST['delete_id_produits']))
 }
 
 $sqlQuery='SELECT * FROM  produits';
+$params = [];
+
+if(!empty($_GET['Search'])) {
+    $sqlQuery .= " WHERE NomProduit LIKE :search 
+    OR Description LIKE :search
+    OR CodeBarres LIke :search";
+    
+    $params['search'] = "%" . $_GET['Search'] . "%";
+}
 $selectPro=$mysqlClient->prepare($sqlQuery);
-$selectPro->execute();
+$selectPro->execute($params);
 $Produits=$selectPro->fetchAll();
+
 
 $stmt = $mysqlClient->prepare("SELECT COUNT(*) AS total FROM produits");
 $stmt->execute();
@@ -119,10 +129,12 @@ $totalProduits = $resultat['total'];
     </div>
  
     <!-- Barre de recherche -->
-    <div class="produits-search">
-        <span class="search-icon"></span>
-        <input type="text" placeholder="Recherchez">
-    </div>
+     <form action="produits.php">
+        <div class="produits-search">
+            <span class="search-icon"></span>
+            <input type="text" placeholder="Recherchez" name="Search">
+        </div>
+    </form>
  
     <!-- Tableau -->
     <div class="table-wrapper">
