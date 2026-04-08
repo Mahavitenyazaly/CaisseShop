@@ -52,14 +52,27 @@
     <h1 class="page-title">Historiques</h1>
  
     <!-- Filtres -->
-    <div class="histo-filters">
-        <button class="btn-today">Aujourd'hui <span class="chevron">▾</span></button>
-        <div class="periode-wrap">
-            <button class="btn-periode">Période personnalisée</button>
-            <button type="date" class="btn-calendar">📅</button>
-        </div>
-        <button class="btn-filtrer">Filtrer</button>
+<div class="histo-filters">
+
+    <div class="histo-seg">
+        <button class="seg-btn active" onclick="setMode('aujourd_hui', this)">Aujourd'hui</button>
+        <button class="seg-btn" onclick="setMode('semaine', this)">Cette semaine</button>
+        <button class="seg-btn" onclick="setMode('perso', this)">Période personnalisée</button>
     </div>
+
+    <div class="periode-wrap" id="periode-wrap">
+        <div class="date-range">
+            <span class="date-label">Du</span>
+            <input type="date" id="date-debut" name="date_debut">
+            <div class="date-sep"></div>
+            <span class="date-label">au</span>
+            <input type="date" id="date-fin" name="date_fin">
+        </div>
+    </div>
+
+    <button class="btn-filtrer">Filtrer</button>
+
+</div>
  
     <!-- Tableau -->
     <div class="table-wrapper">
@@ -69,7 +82,6 @@
                     <th>Date</th>
                     <th>Total</th>
                     <th>Articles</th>
-                    <th>Stock</th>
                     <th>Utilisateur</th>
                     <th>Action</th>
                 </tr>
@@ -80,7 +92,6 @@
                     <td>12/03/2026</td>
                     <td class="histo-total">5€</td>
                     <td class="histo-articles">4</td>
-                    <td class="histo-stock">3</td>
                     <td>Azaly</td>
                     <td><button class="btn-apercu">👁 Aperçu</button></td>
                 </tr>
@@ -89,7 +100,6 @@
                     <td>12/03/2026</td>
                     <td class="histo-total">5€</td>
                     <td class="histo-articles">4</td>
-                    <td class="histo-stock">3</td>
                     <td>Oumaïr</td>
                     <td><button class="btn-apercu">👁 Aperçu</button></td>
                 </tr>
@@ -98,7 +108,6 @@
                     <td>12/03/2026</td>
                     <td class="histo-total">5€</td>
                     <td class="histo-articles">4</td>
-                    <td class="histo-stock">3</td>
                     <td>Alane</td>
                     <td><button class="btn-apercu">👁 Aperçu</button></td>
                 </tr>
@@ -107,7 +116,6 @@
                     <td>12/03/2026</td>
                     <td class="histo-total">5€</td>
                     <td class="histo-articles">4</td>
-                    <td class="histo-stock">3</td>
                     <td>Abdou-Rahamane</td>
                     <td><button class="btn-apercu">👁 Aperçu</button></td>
                 </tr>
@@ -116,7 +124,6 @@
                     <td>12/03/2026</td>
                     <td class="histo-total">5€</td>
                     <td class="histo-articles">4</td>
-                    <td class="histo-stock">3</td>
                     <td>Djanfar</td>
                     <td><button class="btn-apercu">👁 Aperçu</button></td>
                 </tr>
@@ -125,7 +132,6 @@
                     <td>12/03/2026</td>
                     <td class="histo-total">5€</td>
                     <td class="histo-articles">4</td>
-                    <td class="histo-stock">3</td>
                     <td>Amine</td>
                     <td><button class="btn-apercu">👁 Aperçu</button></td>
                 </tr>
@@ -134,7 +140,6 @@
                     <td>12/03/2026</td>
                     <td class="histo-total">5€</td>
                     <td class="histo-articles">4</td>
-                    <td class="histo-stock">3</td>
                     <td>Arham</td>
                     <td><button class="btn-apercu">👁 Aperçu</button></td>
                 </tr>
@@ -143,7 +148,6 @@
                     <td>12/03/2026</td>
                     <td class="histo-total">5€</td>
                     <td class="histo-articles">4</td>
-                    <td class="histo-stock">3</td>
                     <td>Nassur</td>
                     <td><button class="btn-apercu">👁 Aperçu</button></td>
                 </tr>
@@ -152,7 +156,6 @@
                     <td>12/03/2026</td>
                     <td class="histo-total">5€</td>
                     <td class="histo-articles">4</td>
-                    <td class="histo-stock">3</td>
                     <td>Azaly</td>
                     <td><button class="btn-apercu">👁 Aperçu</button></td>
                 </tr>
@@ -161,7 +164,6 @@
                     <td>12/03/2026</td>
                     <td class="histo-total">5€</td>
                     <td class="histo-articles">4</td>
-                    <td class="histo-stock">3</td>
                     <td>Azaly</td>
                     <td><button class="btn-apercu">👁 Aperçu</button></td>
                 </tr>
@@ -173,4 +175,12 @@
 </main>
  
 </body>
+<script>
+    function setMode(mode, btn) {
+    document.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const pw = document.getElementById('periode-wrap');
+    pw.classList.toggle('visible', mode === 'perso');
+}
+</script>
 </html>

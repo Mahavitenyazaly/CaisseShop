@@ -142,7 +142,6 @@ $totalProduits = $resultat['total'];
             <thead>
                 <tr>
                     <th>Nom</th>
-                    <th>Description</th>
                     <th>Code-barres</th>
                     <th>Prix</th>
                     <th>Stock</th>
@@ -153,7 +152,6 @@ $totalProduits = $resultat['total'];
             <?php for ($i = 0; $i < count($Produits); $i++) {?>
                 <tr>
                     <td><?php echo $Produits[$i]['NomProduit']?></td>
-                    <td><span class="desc-dots"><?php echo $Produits[$i]['Description']?></span></td>
                     <td><span class="barcode-badge"><?php echo $Produits[$i]['CodeBarres']?></span></td>
                     <td class="price"><?php echo $Produits[$i]['Prix']?> €</td>
                     <td><span class="stock-badge"><?php echo $Produits[$i]['Stock']?></span></td>

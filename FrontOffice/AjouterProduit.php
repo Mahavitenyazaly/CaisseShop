@@ -92,7 +92,7 @@ if(
     <div class="form-card">
  
         <div class="form-field">
-            <label for="nom">Nom</label>
+            <label for="nom">Nom du produit</label>
             <input type="text" id="nom" name="AjoutNom" >
         </div>
  
@@ -115,7 +115,6 @@ if(
                 <label for="codebarres">Code-barres</label>
                 <div class="barcode-input-wrap">
                     <input type="text" id="codebarres" name="AjoutCodebarres">
-                    <button type="button" class="btn-print">🖨️</button>
                 </div>
             </div>
         </div>

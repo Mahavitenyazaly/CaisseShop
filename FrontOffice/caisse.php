@@ -2,9 +2,17 @@
 require_once(__DIR__ . '/../BDD/ConnexionBDD.php');
 
 $sqlQuery='SELECT * FROM  produits';
-$selectPro=$mysqlClient->prepare($sqlQuery);
-$selectPro->execute();
+$params = [];
 
+if(!empty($_GET['Search'])) {
+    $sqlQuery .= " WHERE NomProduit LIKE :search 
+    OR Description LIKE :search
+    OR CodeBarres LIke :search";
+    
+    $params['search'] = "%" . $_GET['Search'] . "%";
+}
+$selectPro=$mysqlClient->prepare($sqlQuery);
+$selectPro->execute($params);
 $Produits=$selectPro->fetchAll();
 ?>
 

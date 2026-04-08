@@ -565,3 +565,85 @@ body {
     background: #f5c6c2;
     transform: scale(1.1);
 }
+.histo-seg {
+    display: flex;
+    border: 1.5px solid var(--navy);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.seg-btn {
+    padding: .6rem 1.1rem;
+    background: var(--white);
+    color: var(--navy);
+    font-family: inherit;
+    font-size: .88rem;
+    font-weight: 700;
+    border: none;
+    border-right: 1.5px solid var(--navy);
+    cursor: pointer;
+    transition: background .15s, color .15s;
+    white-space: nowrap;
+}
+
+.seg-btn:last-child {
+    border-right: none;
+}
+
+.seg-btn.active {
+    background: var(--navy);
+    color: var(--white);
+}
+
+.seg-btn:not(.active):hover {
+    background: #f0f4f8;
+}
+
+.periode-wrap {
+    display: none;
+    align-items: center;
+}
+
+.periode-wrap.visible {
+    display: flex;
+}
+
+.date-range {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .55rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--white);
+    transition: border-color .2s;
+}
+
+.date-range:focus-within {
+    border-color: var(--navy);
+}
+
+.date-label {
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.date-range input[type="date"] {
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: .88rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    background: transparent;
+    cursor: pointer;
+}
+
+.date-sep {
+    width: 16px;
+    height: 1.5px;
+    background: var(--border);
+    flex-shrink: 0;
+}
