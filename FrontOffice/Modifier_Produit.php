@@ -1,3 +1,32 @@
+<?php
+if(
+    isset($_POST['update_id_produits']) &&
+    isset($_POST['update_NomProduit']) &&
+    isset($_POST['update_Desc']) &&
+    isset($_POST['update_CodeB']) &&
+    isset($_POST['update_Prix']) &&
+    isset($_POST['update_Stock']))
+    {
+        $IdPU = $_POST['update_id_produits'];
+        $NomPU = $_POST['update_NomProduit'];
+        $DescUP = $_POST['update_Desc'];
+        $PrixUP = $_POST['update_Prix'];
+        $StockUp = $_POST['update_Stock'];
+        $CodeUp = $_POST['update_CodeB'];
+
+  }else{
+    header('location:produits.php');
+  }  
+
+
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -22,14 +51,6 @@
     }
 
     * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      padding: 24px;
-    }
 
     .container {
       max-width: 1100px;
@@ -186,17 +207,19 @@
 </head>
 <body>
  
-<!-- SIDEBAR -->
+<!-- ── SIDEBAR ── -->
 <aside class="sidebar">
+ 
     <div class="sidebar-logo">
         <img src="../Images/logo-caisse.png" alt="CaisseShop">
     </div>
+ 
     <nav class="sidebar-nav">
-        <a href="caisse.php" class="nav-item active">
+        <a href="caisse.php" class="nav-item">
             <span class="nav-icon"></span>
             <span>Caisse</span>
         </a>
-        <a href="produits.php" class="nav-item">
+        <a href="produits.php" class="nav-item active">
             <span class="nav-icon"></span>
             <span>Produits</span>
         </a>
@@ -205,6 +228,7 @@
             <span>Historique</span>
         </a>
     </nav>
+ 
     <div class="sidebar-user">
         <div class="user-avatar">👤</div>
         <div class="user-info">
@@ -216,6 +240,7 @@
             Déconnexion
         </a>
     </div>
+ 
 </aside>
  
 <!-- MAIN -->
@@ -229,28 +254,28 @@
             <div class="form-card">
 
                 <div class="form-field">
-                    <input type="hidden" name="IdProduitUpdated" value="<?php echo $_POST['update_id_produits'] ?>">
+                    <input type="hidden" name="IdProduitUpdated" value="<?php echo $IdPU ?>">
                     <label>Nom du produit</label>
-                    <input type="text" name="NomP_updated" value="<?php echo $_POST['update_NomProduit']?>">
+                    <input type="text" name="NomP_updated" id="productName"value="<?php echo $NomPU?>">
                 </div>
 
                 <div class="form-field">
                     <label>Description</label>
-                    <textarea name="Description_Updated" rows="4"><?php echo $_POST['update_Desc']?></textarea>
+                    <textarea name="Description_Updated" rows="4"><?php echo $DescUP?></textarea>
                 </div>
 
                 <div class="inline-fields">
                     <div class="form-field">
                         <label>Prix</label>
-                        <input type="text" name="PrixUpdated" class="input-teal" value="<?php echo $_POST['update_Prix']?>">
+                        <input type="text" name="PrixUpdated" id="priceValue" class="input-teal" value="<?php echo $PrixUP?>">
                     </div>
                     <div class="form-field">
                         <label>Stock</label>
-                        <input type="text" name="StockUpdated" class="input-teal input-center" value="<?php echo $_POST['update_Stock']?>">
+                        <input type="text" name="StockUpdated" class="input-teal input-center" value="<?php echo $StockUp?>">
                     </div>
                     <div class="form-field barcode-field">
                         <label>Code-barres</label>
-                        <input type="text" name="CodebarresUpdated" value="<?php echo $_POST['update_CodeB']?>">
+                        <input type="text" name="CodebarresUpdated" id="barcodeValue" value="<?php echo $CodeUp?>">
                     </div>
                 </div>
 
@@ -267,9 +292,17 @@
             <div class="preview-zone" id="previewZone">
                 <span style="color: var(--text-muted); font-size: .85rem;">Aperçu de l'étiquette</span>
             </div>
+        <div class="field">
+            <label for="printerSelect">Imprimante DYMO</label>
+            <select id="printerSelect"></select>
+        </div>
+        <div class="field">
+            <label for="copies">Nombre d’exemplaires</label>
+            <input id="copies" type="number" min="1" max="100" step="1" value="1" />
+        </div>
             <button class="secondary" id="refreshBtn" type="button">Actualiser les imprimantes</button>
             <button class="secondary" id="previewBtn" type="button">Aperçu</button>
-            <button class="primary" id="printBtn" type="button">Imprimer</button>
+            <button class="btn-filter" id="printBtn" type="button">Imprimer</button>
         </div>
 
     </div>
@@ -277,6 +310,7 @@
 </main>
  
 </body>
+
 <script>
     const statusBox = document.getElementById('statusBox');
     const printerSelect = document.getElementById('printerSelect');
@@ -419,7 +453,7 @@ function validateLabel() {
     function updateLabelValues(label) {
       const barcode = barcodeValue.value.trim();
       const name = productName.value.trim();
-      const price = priceValue.value.trim();
+      const price = "Prix : " + priceValue.value.trim() + " €";
 
       if (!barcode) {
         throw new Error('Veuillez saisir une valeur pour BARCODE.');
@@ -536,5 +570,6 @@ function printLabel() {
     priceValue.addEventListener('input', renderPreview);
 
     initDymo();
-</script>
+  </script>
+
 </html>

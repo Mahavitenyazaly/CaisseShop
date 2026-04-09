@@ -84,8 +84,8 @@ $Produits=$selectPro->fetchAll();
 </main>
 
 <!-- PANIER -->
+ <form action="" method="POST"></form>
 <aside class="cart">
-
     <div class="cart-header">
         <h2>Panier</h2>
         <p class="cart-count" id="panier-count">0 article(s)</p>
@@ -105,8 +105,8 @@ $Produits=$selectPro->fetchAll();
         </div>
         <button class="btn-pay" id="btn-payer" >Payer</button>
     </div>
-
 </aside>
+</form>
 
 
 
