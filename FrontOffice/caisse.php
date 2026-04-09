@@ -84,7 +84,7 @@ $Produits=$selectPro->fetchAll();
 </main>
 
 <!-- PANIER -->
- <form action="" method="POST"></form>
+ <form action="caisse.php" method="POST"></form>
 <aside class="cart">
     <div class="cart-header">
         <h2>Panier</h2>
@@ -230,6 +230,21 @@ $Produits=$selectPro->fetchAll();
 }
 
     afficherProduits();
+
+
+    function convertirScan(code){
+        return code.replaceAll("Shift", "") 
+        .replaceAll("à", "0")
+        .replaceAll("&", "1")
+        .replaceAll("é", "2")
+        .replaceAll("\"", "3")
+        .replaceAll("'", "4")
+        .replaceAll("(", "5")
+        .replaceAll("-", "6")
+        .replaceAll("è", "7")
+        .replaceAll("_", "8")
+        .replaceAll("ç", "9");
+    }
 
 
 </script>

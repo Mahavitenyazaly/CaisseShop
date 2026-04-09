@@ -275,7 +275,7 @@ if(
                     </div>
                     <div class="form-field barcode-field">
                         <label>Code-barres</label>
-                        <input type="text" name="CodebarresUpdated" id="barcodeValue" value="<?php echo $CodeUp?>">
+                        <input type="text" name="CodebarresUpdated" id="barcodeValue" maxlength="8" value="<?php echo $CodeUp?>">
                     </div>
                 </div>
 
