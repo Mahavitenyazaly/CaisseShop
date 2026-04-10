@@ -1,4 +1,4 @@
-function ajouterProduitDansCaisse(){
+/*function ajouterProduitDansCaisse(){
     const ticketList = document.getElementById("");
              ticketList.innerHTML += `
           <div class="ticket-item">
@@ -24,4 +24,4 @@ function afficherProduits(){
           </div>
         `;
    }
-}
+}*/

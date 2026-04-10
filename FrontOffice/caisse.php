@@ -1,6 +1,13 @@
 <?php
 require_once(__DIR__ . '/../BDD/ConnexionBDD.php');
 
+
+if(isset($_POST['produits'])){
+    echo 'formulaire reçu';
+    echo $_POST['produits'][0]['id'];
+}
+
+
 $sqlQuery='SELECT * FROM  produits';
 $params = [];
 
@@ -14,6 +21,8 @@ if(!empty($_GET['Search'])) {
 $selectPro=$mysqlClient->prepare($sqlQuery);
 $selectPro->execute($params);
 $Produits=$selectPro->fetchAll();
+
+
 ?>
 
 
@@ -84,7 +93,7 @@ $Produits=$selectPro->fetchAll();
 </main>
 
 <!-- PANIER -->
- <form action="caisse.php" method="POST"></form>
+ <form action="caisse.php" method="POST">
 <aside class="cart">
     <div class="cart-header">
         <h2>Panier</h2>
@@ -103,10 +112,11 @@ $Produits=$selectPro->fetchAll();
             <span>Total</span>
             <span class="total-amount" id="panier-total">0.00 €</span>
         </div>
-        <button class="btn-pay" id="btn-payer" >Payer</button>
+        <button type="submit" class="btn-pay" id="btn-payer" >Payer</button>
     </div>
 </aside>
 </form>
+
 
 
 
