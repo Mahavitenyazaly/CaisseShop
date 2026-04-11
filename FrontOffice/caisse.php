@@ -41,7 +41,7 @@ if(isset($_POST['produits']) // $_POST['produits'] c'est le panier.
       $insertCl = $mysqlClient-> prepare('INSERT INTO venteproduits (IdVente, IdProduits ,Quantite) VALUES (:id_vente,:id_produits,:quantite)');
       $insertCl->execute([
         'id_vente' => $IdVEnte,
-        'id_produits' => $Idproduits,
+        'id_produits' => $Idproduits,  
         'quantite' => $Quantite
       ]);
     }
@@ -282,6 +282,33 @@ $Produits=$selectPro->fetchAll();
 }
 
     afficherProduits();
+
+    refProduit = "";
+
+    document.addEventListener('keydown',(e) => {
+
+    if (e.key != 'Enter') {
+        refProduit+=e.key;
+    }
+
+    if (e.key == 'Enter') {
+
+        if (refProduit != "") {
+
+            const  recupProduit = produits.find(p => p.CodeBarres == convertirScan(refProduit));
+
+            if (recupProduit != null) {
+
+                ajouterProduitDansCaisse(recupProduit.Id);
+                refProduit = "";
+
+            }else{
+                alert("Hé je vais te tuer dans ton lit, codeBarres ne correspond pas man");
+            }
+        }
+
+    }
+})
 
 
     function convertirScan(code){
