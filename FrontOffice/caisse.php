@@ -2,9 +2,49 @@
 require_once(__DIR__ . '/../BDD/ConnexionBDD.php');
 
 
-if(isset($_POST['produits'])){
-    echo 'formulaire reçu';
-    echo $_POST['produits'][0]['id'];
+if(isset($_POST['produits']) // $_POST['produits'] c'est le panier.
+    && $_POST['total'] &&
+    $_POST['NombreArticles']) {
+
+    $id_user = 1;
+    $total = $_POST['total'];
+    $Nb_articles = $_POST['NombreArticles'];
+
+    // Faire l'insertion dans la table Vente.
+
+      $insertCl = $mysqlClient-> prepare('INSERT INTO vente (IdUtilisateur, Total ,NbArticle) VALUES (:id_user,:total,:nbarticles)');
+      $insertCl->execute([
+        'id_user' => $id_user,
+        'total' => $total,
+        'nbarticles' => $Nb_articles
+      ]);
+
+      // Pour récupérer la vente réalisé.
+      $stmt = $mysqlClient->prepare("SELECT * FROM vente ORDER BY id DESC");
+      $stmt->execute();
+      $resultat = $stmt->fetchAll();
+
+
+
+      
+      $IdVEnte = $resultat[0]['Id'];
+
+    // On fait une boucle pour ajouter les produits de la vente réalisé.
+    for($i = 0; $i < count($_POST['produits']); $i++) {
+
+     
+      $Idproduits = $_POST['produits'][$i]['id'];
+      $Quantite = $_POST['produits'][$i]['quantite'];
+
+      // Faire l'insertion dans la table VenteProduits.
+
+      $insertCl = $mysqlClient-> prepare('INSERT INTO venteproduits (IdVente, IdProduits ,Quantite) VALUES (:id_vente,:id_produits,:quantite)');
+      $insertCl->execute([
+        'id_vente' => $IdVEnte,
+        'id_produits' => $Idproduits,
+        'quantite' => $Quantite
+      ]);
+    }
 }
 
 
@@ -166,6 +206,8 @@ $Produits=$selectPro->fetchAll();
                 </div>
                 <input type="hidden" name="produits[${i}][id]" value="${caisse[i].Id}">
                 <input type="hidden" name="produits[${i}][quantite]" value="${caisse[i].Quantite}">
+                <input type="hidden" name="total" value="${total}">
+                <input type="hidden" name="NombreArticles" value="${caisse.length}">
             </div>
         `;
     }
