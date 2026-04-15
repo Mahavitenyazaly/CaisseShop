@@ -1,4 +1,11 @@
 <?php
+session_start();
+// Verifier si la session existe
+
+if (!isset($_SESSION['USER_CONNEXION'])) {
+    header('Location: login.php');
+    exit;
+}
 require_once(__DIR__ . '/../BDD/ConnexionBDD.php');
 
 

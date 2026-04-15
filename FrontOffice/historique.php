@@ -1,3 +1,28 @@
+<?php 
+session_start();
+// Verifier si la session existe
+
+if (!isset($_SESSION['USER_CONNEXION'])) {
+    header('Location: login.php');
+    exit;
+}
+require_once(__DIR__ . '/../BDD/ConnexionBDD.php');
+
+$sqlQuery = 
+'SELECT utilisateurs.Nom, 
+utilisateurs.Prenom, 
+Vente.Date,
+Vente.Total,
+Vente.NbArticle
+FROM utilisateurs
+JOIN vente on vente.IdUtilisateur = utilisateurs.Id;';
+$Selectuser=$mysqlClient->prepare($sqlQuery);
+$Selectuser->execute();
+$Vente=$Selectuser->fetchAll();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -87,86 +112,15 @@
                 </tr>
             </thead>
             <tbody>
- 
+ <?php for ($i = 0; $i < count($Vente); $i++) {?>
                 <tr>
-                    <td>12/03/2026</td>
-                    <td class="histo-total">5€</td>
-                    <td class="histo-articles">4</td>
-                    <td>Azaly</td>
+                    <td><?php echo $Vente[$i]['Date']?></td>
+                    <td class="histo-total"><?php echo $Vente[$i]['Total']?></td>
+                    <td class="histo-articles"><?php echo $Vente[$i]['NbArticle']?></td>
+                    <td><?php echo $Vente[$i]['Prenom'].' '.$Vente[$i]['Nom']?></td>
                     <td><button class="btn-apercu">👁 Aperçu</button></td>
                 </tr>
- 
-                <tr>
-                    <td>12/03/2026</td>
-                    <td class="histo-total">5€</td>
-                    <td class="histo-articles">4</td>
-                    <td>Oumaïr</td>
-                    <td><button class="btn-apercu">👁 Aperçu</button></td>
-                </tr>
- 
-                <tr>
-                    <td>12/03/2026</td>
-                    <td class="histo-total">5€</td>
-                    <td class="histo-articles">4</td>
-                    <td>Alane</td>
-                    <td><button class="btn-apercu">👁 Aperçu</button></td>
-                </tr>
- 
-                <tr>
-                    <td>12/03/2026</td>
-                    <td class="histo-total">5€</td>
-                    <td class="histo-articles">4</td>
-                    <td>Abdou-Rahamane</td>
-                    <td><button class="btn-apercu">👁 Aperçu</button></td>
-                </tr>
- 
-                <tr>
-                    <td>12/03/2026</td>
-                    <td class="histo-total">5€</td>
-                    <td class="histo-articles">4</td>
-                    <td>Djanfar</td>
-                    <td><button class="btn-apercu">👁 Aperçu</button></td>
-                </tr>
- 
-                <tr>
-                    <td>12/03/2026</td>
-                    <td class="histo-total">5€</td>
-                    <td class="histo-articles">4</td>
-                    <td>Amine</td>
-                    <td><button class="btn-apercu">👁 Aperçu</button></td>
-                </tr>
- 
-                <tr>
-                    <td>12/03/2026</td>
-                    <td class="histo-total">5€</td>
-                    <td class="histo-articles">4</td>
-                    <td>Arham</td>
-                    <td><button class="btn-apercu">👁 Aperçu</button></td>
-                </tr>
- 
-                <tr>
-                    <td>12/03/2026</td>
-                    <td class="histo-total">5€</td>
-                    <td class="histo-articles">4</td>
-                    <td>Nassur</td>
-                    <td><button class="btn-apercu">👁 Aperçu</button></td>
-                </tr>
- 
-                <tr>
-                    <td>12/03/2026</td>
-                    <td class="histo-total">5€</td>
-                    <td class="histo-articles">4</td>
-                    <td>Azaly</td>
-                    <td><button class="btn-apercu">👁 Aperçu</button></td>
-                </tr>
- 
-                <tr>
-                    <td>12/03/2026</td>
-                    <td class="histo-total">5€</td>
-                    <td class="histo-articles">4</td>
-                    <td>Azaly</td>
-                    <td><button class="btn-apercu">👁 Aperçu</button></td>
-                </tr>
+            <?php }?>
  
             </tbody>
         </table>

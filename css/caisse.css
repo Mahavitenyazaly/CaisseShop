@@ -117,7 +117,7 @@ body {
     color: var(--text-muted);
 }
 
-.btn-logout {
+.btn-logout{
     display: flex;
     align-items: center;
     gap: .5rem;
@@ -143,8 +143,17 @@ body {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--orange);
-    display: inline-block;
+    background: orange;
+}
+.btn-logout button {
+    background: transparent;
+    border: none;
+    color: orange;
+    font-family: inherit;
+    font-size: .85rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
 }
 
 /* ══════════════════════════════
