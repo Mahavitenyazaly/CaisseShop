@@ -104,6 +104,7 @@ $Vente=$Selectuser->fetchAll();
         <table class="histo-table">
             <thead>
                 <tr>
+                    <th>Vente</th>
                     <th>Date</th>
                     <th>Total</th>
                     <th>Articles</th>
@@ -114,11 +115,12 @@ $Vente=$Selectuser->fetchAll();
             <tbody>
  <?php for ($i = 0; $i < count($Vente); $i++) {?>
                 <tr>
+                    <td> Vente #<?php echo $i+1?></td>
                     <td><?php echo $Vente[$i]['Date']?></td>
                     <td class="histo-total"><?php echo $Vente[$i]['Total']?></td>
                     <td class="histo-articles"><?php echo $Vente[$i]['NbArticle']?></td>
                     <td><?php echo $Vente[$i]['Prenom'].' '.$Vente[$i]['Nom']?></td>
-                    <td><button class="btn-apercu">👁 Aperçu</button></td>
+                    <td><a href="aperçu.php" class="btn-apercu">👁 Aperçu</a></td>
                 </tr>
             <?php }?>
  

@@ -92,7 +92,6 @@
             <tbody>
                 <tr>
                     <td class="article-name">
-                        <img src="../Images/pain-complet.jpg" alt="Pain complet" class="art-img">
                         Pain complet
                     </td>
                     <td>1.50 €</td>
@@ -101,7 +100,6 @@
                 </tr>
                 <tr>
                     <td class="article-name">
-                        <img src="../Images/lait-de-vache.jpg" alt="Lait entier" class="art-img">
                         Lait entier 1L
                     </td>
                     <td>1.20 €</td>
@@ -110,7 +108,6 @@
                 </tr>
                 <tr>
                     <td class="article-name">
-                        <img src="../Images/bananes.jpg" alt="Bananes" class="art-img">
                         Bananes (kg)
                     </td>
                     <td>2.20 €</td>
@@ -119,7 +116,6 @@
                 </tr>
                 <tr>
                     <td class="article-name">
-                        <img src="../Images/tomate.webp" alt="Tomates" class="art-img">
                         Tomates (kg)
                     </td>
                     <td>3.50 €</td>
