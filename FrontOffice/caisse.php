@@ -151,7 +151,9 @@ $Produits=$selectPro->fetchAll();
         <p>Panier vide</p>
     </div>
 
-    <div id="panier-articles" style="display:none; flex:1; overflow-y:auto; padding: 0 .5rem;"></div>
+    <div id="panier-articles" style="display:flex; height: 600px; overflow-y:auto; padding: 0 .5rem;">
+        
+    </div>
 
     <div class="cart-footer">
         <div class="cart-total">

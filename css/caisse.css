@@ -495,7 +495,6 @@ body {
     font-weight: 700;
     color: var(--text-dark);
     white-space: normal;
-    overflow: visible;
     text-overflow: unset;
 }
 

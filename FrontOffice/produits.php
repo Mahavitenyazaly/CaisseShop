@@ -113,15 +113,15 @@ $totalProduits = $resultat['total'];
     <div class="sidebar-user">
         <div class="user-avatar">👤</div>
         <div class="user-info">
-            <span class="user-name">Azaly MAHAVITENY</span>
-            <span class="user-email">azalymahaviteny@gmail.com</span>
+            <span class="user-name"><?php echo $_SESSION['USER_CONNEXION']['nom'].' '.$_SESSION['USER_CONNEXION']['prenom'] ?></span>
+            <span class="user-email"><?php echo $_SESSION['USER_CONNEXION']['email'] ?></span>
         </div>
-        <a href="../FrontOffice/login.php" class="btn-logout">
+        <form action="deconnexion.php" class="btn-logout">
             <span class="logout-dot"></span>
-            Déconnexion
-        </a>
+            <button type="submit"> Déconnexion </button>
+        </form>
     </div>
- 
+    
 </aside>
 
 <!-- ── MAIN CONTENT ── -->
